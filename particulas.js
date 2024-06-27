@@ -21,9 +21,9 @@ function updateCoords(e){
 }
 
 function setParticuleDirection(p){
-    var angle = anime.ramdom(0, 360) * Math.PI / 180;
-    var value = anime.ramdom(50, 180);
-    var radius = [-1, 1][anime.ramdom(0, 1)] * value;
+    var angle = anime.random(0, 360) * Math.PI / 180;
+    var value = anime.random(50, 180);
+    var radius = [-1, 1][anime.random(0, 1)] * value;
     return{
         x: p.x + radius * Math.cos(angle),
         y: p.y + radius * Math.sin(angle)
@@ -34,8 +34,8 @@ function createParticule(x, y){
     var p = {};
     p.x = x;
     p.y = y;
-    p.color = colors[anime.ramdom(0, colors.length - 1)];
-    p.radius = anime.ramdom(16, 32);
+    p.color = colors[anime.random(0, colors.length - 1)];
+    p.radius = anime.random(16, 32);
     p.endPos = setParticuleDirection(p);
     p.draw = function(){
         ctx.beginPath();
@@ -83,20 +83,20 @@ function animateParticules(x, y){
         x: function(p) { return p.endPos.x; },
         y: function(p) { return p.endPos.y; },
         radius: 0.1,
-        duration: anime.ramdom(1200, 1800),
+        duration: anime.random(1200, 1800),
         easing: 'easeOutExpo',
         update: renderParticule
     })
     .add({
         targets : circle,
-        radius: anime.ramdom(80, 160),
+        radius: anime.random(80, 160),
         lineWidth: 0,
         alpha: {
             value: 0,
             easing: 'linear',
-            duration: anime.ramdom(600, 800),
+            duration: anime.random(600, 800),
         },
-        duration: anime.ramdom(1200, 1800),
+        duration: anime.random(1200, 1800),
         easing: 'easeOutExpo',
         update: renderParticule
     }, 0);
@@ -118,7 +118,6 @@ document.addEventListener(tap, function (e){
 
 var centerX = window.innerWidth / 2;
 var centerY = window.innerHeight / 2;
-
 
 setCanvasSize();
 window.addEventListener('resize', setCanvasSize, false);
